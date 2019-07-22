@@ -10,10 +10,8 @@ const qoqtails = require("./controllers/qoqtails");
 const db = knex({
   client: 'pg',
   connection: {
-    host : process.env.IP,
-    user : 'postgres',
-    password : 'newPassword',
-    database : 'qoqtail'
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
   }
 });
 
