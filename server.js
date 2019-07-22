@@ -31,6 +31,6 @@ app.get('/searchqoqtailbyname/:keyword', qoqtails.searchByName());
 
 app.get('/getqoqtailbyid/:id', qoqtails.getQoqtails());
 
-app.listen(8080, () => {
+app.listen(process.env.PORT, () => {
     console.log('server is running...');
 });
