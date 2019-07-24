@@ -4,16 +4,12 @@ const bcrypt = require('bcrypt-nodejs');
 const cors = require("cors");
 const knex = require("knex");
 
+const port = process.env.PORT || 8080;
+
 const signin = require("./controllers/signin");
 const qoqtails = require("./controllers/qoqtails");
 
-const db = knex({
-  client: 'pg',
-  connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: true,
-  }
-});
+const db = require('./db');
 
 const app = express();
 app.use(bodyParser.json());
@@ -31,6 +27,6 @@ app.get('/searchqoqtailbyname/:keyword', qoqtails.searchByName());
 
 app.get('/getqoqtailbyid/:id', qoqtails.getQoqtails());
 
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
     console.log('server is running...');
 });
