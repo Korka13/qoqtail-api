@@ -2,9 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require('bcrypt-nodejs');
 const cors = require("cors");
-const knex = require("knex");
 
 const port = process.env.PORT || 8080;
+const corsOptions = { origin: process.env.ALLOW_ORIGIN || true }
 
 const signin = require("./controllers/signin");
 const qoqtails = require("./controllers/qoqtails");
@@ -13,7 +13,7 @@ const db = require('./db');
 
 const app = express();
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.post('/signin', signin.handleSignin(db, bcrypt));
 
