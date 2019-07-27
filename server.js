@@ -6,6 +6,7 @@ const cors = require("cors");
 const port = process.env.PORT || 8080;
 const corsOptions = { origin: process.env.ALLOW_ORIGIN || true }
 
+const wakeUp = require("./controllers/wakeup");
 const signin = require("./controllers/signin");
 const qoqtails = require("./controllers/qoqtails");
 
@@ -14,6 +15,8 @@ const db = require('./db');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
+
+app.get('/wakeup', wakeUp());
 
 app.post('/signin', signin.handleSignin(db, bcrypt));
 
